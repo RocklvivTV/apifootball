@@ -1,6 +1,7 @@
 package apifootball
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -52,7 +53,7 @@ func TestRequest(t *testing.T) {
 	setup()
 	client := NewAPIClient(apikey)
 
-	res, err := client.DoRequests("GET", "leagues/league/2", nil)
+	res, err := client.DoRequests("GET", fmt.Sprintf("leagues/league/%d", leagueID), nil)
 	if err != nil {
 		t.Error(err)
 	}

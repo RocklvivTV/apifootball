@@ -48,9 +48,9 @@ type APIClient struct {
 // NewAPIClient creates new client to communicate with API-FOOTBALL RapidApi
 func NewAPIClient(apikey string) *APIClient {
 	var h http.Client
-	if len(apikey) < 1 || apikey == "" {
-		log.Println(fmt.Errorf("the API Key is empty or not set"))
-	}
+	// if len(apikey) < 1 || apikey == "" {
+	// 	log.Println(fmt.Errorf("the API Key is empty or not set"))
+	// }
 	return &APIClient{
 		apikey:        apikey,
 		httpClient:    h,
@@ -66,6 +66,11 @@ func (c *APIClient) SetRequestsLimit(rpm, requestsDaily int) *APIClient {
 	c.reqDailyLimit = requestsDaily
 	c.rpm = rpm
 	return c
+}
+
+// GetRequestsLimit returns current values of cRPM, CRPD
+func (c *APIClient) GetRequestsLimit() (int, int) {
+	return countRequestsDaily, countRequestsMinute
 }
 
 // SetTimeoutes provides a possibility to configure timeoutes
@@ -118,6 +123,12 @@ func (c *APIClient) DoRequests(method, url string, values url.Values) (js *json.
 
 	js = json.NewDecoder(buf)
 	return js, nil
+}
+
+// UpdateRPMCounter provides a possibility to set a proper count of RequestsPerDay and RequestsPerMinute if required
+func (c *APIClient) UpdateRPMCounter(cRPD, cRPM int) {
+	countRequestsDaily = cRPD
+	countRequestsMinute = cRPM
 }
 
 // Prepares URL with parameters.

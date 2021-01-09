@@ -27,12 +27,12 @@ type Leagues struct {
 
 // LeagueCoverage represents a status of each league and what is covered by RapidAPI APIFOOTBALL provider
 type LeagueCoverage struct {
-	Stangings   bool                     `json:"standings"`
-	Fixtures    []LeagueCoverageFixtures `json:"fixtures"`
-	Players     bool                     `json:"players"`
-	TopScorers  bool                     `json:"topScorers"`
-	Predictions bool                     `json:"predictions"`
-	Odds        bool                     `json:"odds"`
+	Stangings   bool                   `json:"standings"`
+	Fixtures    LeagueCoverageFixtures `json:"fixtures"`
+	Players     bool                   `json:"players"`
+	TopScorers  bool                   `json:"topScorers"`
+	Predictions bool                   `json:"predictions"`
+	Odds        bool                   `json:"odds"`
 }
 
 // LeagueCoverageFixtures represents a status of each league and what is covered by each fixture
@@ -97,6 +97,8 @@ type Standings struct {
 	Api struct {
 		Results   int        `json:"results"`
 		Standings []Standing `json:"standings"`
+		cRPM      int
+		cRPD      int
 	}
 }
 
@@ -125,4 +127,54 @@ type FormeStruct struct {
 	Lose          int `json:"lose"`
 	GoalsFor      int `json:"goalsFor"`
 	GoalsAgainst  int `json:"goalsAgainst"`
+}
+
+// LeagueFixtures represents all fixtures in required league
+type LeagueFixtures struct {
+	Api struct {
+		Results  int        `json:"results"`
+		Fixtures []Fixtures `json:"fixtures"`
+		cRPM     int
+		cRPD     int
+	}
+}
+
+// Fixtures represents data about each fixture in a league
+type Fixtures struct {
+	FixtureID int `json:"fixture_id"`
+	LeagueID  int `json:"league_id"`
+	League    struct {
+		Name    string `json:"name"`
+		Country string `json:"country"`
+		Logo    string `json:"logo"`
+		Flag    string `json:"flag"`
+	} `json:"league"`
+	EventDate       string `json:"event_date"`
+	EventTimestamp  string `json:"event_timestamp"`
+	FirstHalfStart  string `json:"firstHalfStart"`
+	SecondHalfStart string `json:"secondHalfStart"`
+	Round           string `json:"round"`
+	Status          string `json:"status"`
+	StatusShort     string `json:"status_short"`
+	Elapsed         string `json:"elapsed"`
+	Venue           string `json:"venue"`
+	Referee         string `json:"referee"`
+	HomeTeam        struct {
+		TeamID   int    `json:"team_id"`
+		TeamName string `json:"team_name"`
+		Logo     string `json:"logo"`
+	} `json:"home_team"`
+	AwayTeam struct {
+		TeamID   int    `json:"team_id"`
+		TeamName string `json:"team_name"`
+		Logo     string `json:"logo"`
+	} `json:"away_team"`
+	GoalsHomeTeam int `json:"goalsHomeTeam"`
+	GoalsAwayTeam int `json:"goalsAwayTeam"`
+	Score         struct {
+		Halftime  string `json:"halftime"`
+		Fulltime  string `json:"fulltime"`
+		Extratime string `json:"extratime"`
+		Penalty   string `json:"penalty"`
+	} `json:"score"`
 }
