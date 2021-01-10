@@ -14,7 +14,7 @@ var (
 func (c *APIClient) GetFixturesByLeagueID(leagueID int) (*LeagueFixtures, error) {
 	var fixtureLeagues LeagueFixtures
 
-	res, err := c.DoRequests("GET", fmt.Sprintf("%s/%d?timezone=%s", fixturesLeaguePrefix, leagueID, timezone), nil)
+	res, err := c.DoRequests("GET", fmt.Sprintf("%s/%d", fixturesLeaguePrefix, leagueID), nil)
 	if err != nil {
 		log.Println(fmt.Errorf(err.Error()))
 		return nil, err
