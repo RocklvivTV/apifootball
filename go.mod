@@ -1,3 +1,3 @@
-module github.com/rocklviv/api-football
+module github.com/rocklvivtv/apifootball
 
 go 1.14
