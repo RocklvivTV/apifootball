@@ -150,9 +150,9 @@ type Fixtures struct {
 		Flag    string `json:"flag"`
 	} `json:"league"`
 	EventDate       string `json:"event_date"`
-	EventTimestamp  string `json:"event_timestamp"`
-	FirstHalfStart  string `json:"firstHalfStart"`
-	SecondHalfStart string `json:"secondHalfStart"`
+	EventTimestamp  int    `json:"event_timestamp"`
+	FirstHalfStart  int    `json:"firstHalfStart"`
+	SecondHalfStart int    `json:"secondHalfStart"`
 	Round           string `json:"round"`
 	Status          string `json:"status"`
 	StatusShort     string `json:"status_short"`
