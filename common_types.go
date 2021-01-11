@@ -155,7 +155,7 @@ type Fixtures struct {
 	SecondHalfStart int    `json:"secondHalfStart"`
 	Round           string `json:"round"`
 	Status          string `json:"status"`
-	StatusShort     string `json:"status_short"`
+	StatusShort     string `json:"statusShort"`
 	Elapsed         int    `json:"elapsed"`
 	Venue           string `json:"venue"`
 	Referee         string `json:"referee"`
