@@ -178,3 +178,11 @@ type Fixtures struct {
 		Penalty   string `json:"penalty"`
 	} `json:"score"`
 }
+
+// CurrentFixtureRound represents data about current round
+type CurrentFixtureRound struct {
+	Api struct {
+		Results  int      `json:"results"`
+		Fixtures []string `json:"fixtures"`
+	} `json:"api"`
+}
