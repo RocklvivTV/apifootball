@@ -8,7 +8,7 @@ import (
 var (
 	fixturesLeaguePrefix      = "fixtures/league"
 	timezone                  = "Europe/London"
-	currentFixtureRoundPrefix = "fixtures/round"
+	currentFixtureRoundPrefix = "fixtures/rounds"
 )
 
 // GetFixturesByLeagueID returns fixtures in required league by ID
@@ -34,7 +34,7 @@ func (c *APIClient) GetFixturesByLeagueID(leagueID int) (*LeagueFixtures, error)
 func (c *APIClient) GetCurrentFixtureRound(leagueID int) (*CurrentFixtureRound, error) {
 	var currentFixtureRound CurrentFixtureRound
 
-	res, err := c.DoRequests("GET", fmt.Sprintf("%s/%d", currentFixtureRoundPrefix, leagueID), nil)
+	res, err := c.DoRequests("GET", fmt.Sprintf("%s/%d/current", currentFixtureRoundPrefix, leagueID), nil)
 	if err != nil {
 		log.Println(fmt.Errorf(err.Error()))
 		return nil, err
