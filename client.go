@@ -119,7 +119,11 @@ func (c *APIClient) DoRequests(method, url string, values url.Values) (js *json.
 		return nil, err
 	}
 	buf := new(bytes.Buffer)
-	io.Copy(buf, resp.Body)
+	_, err = io.Copy(buf, resp.Body)
+	if err != nil {
+		log.Println(fmt.Errorf(err.Error()))
+		return nil, err
+	}
 
 	js = json.NewDecoder(buf)
 	return js, nil
