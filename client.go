@@ -103,7 +103,7 @@ func (c *APIClient) DoRequests(method, url string, values url.Values) (js *json.
 		time.Sleep(c.timeout * time.Minute)
 		countRequestsMinute = 0
 	}
-
+	log.Println(fmt.Sprintf("Request URL: %s", req.URL))
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
 		log.Println(fmt.Errorf("Failed to make a request. Error: %s", err.Error()))
