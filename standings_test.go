@@ -13,9 +13,9 @@ func TestGetStandingsByLeagueID(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	log.Println(res.Api.cRPD)
-	for i := range res.Api.Standings {
-		r := res.Api.Standings[i]
+	log.Println(res.API.cRPD)
+	for i := range res.API.Standings {
+		r := res.API.Standings[i]
 		if len(r) != 20 {
 			t.Error()
 		}

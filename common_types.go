@@ -1,14 +1,14 @@
 package apifootball
 
-// League represents a league(s) api call response
+// League represents a league(s) API call response
 type League struct {
-	Api struct {
+	API struct {
 		Results int       `json:"results"`
 		Leagues []Leagues `json:"leagues"`
 	}
 }
 
-// Leagues represents a array of leagues returned by api call
+// Leagues represents a array of leagues returned by API call
 type Leagues struct {
 	LeagueID    int            `json:"league_id"`
 	Name        string         `json:"name"`
@@ -25,7 +25,7 @@ type Leagues struct {
 	Coverage    LeagueCoverage `json:"coverage"`
 }
 
-// LeagueCoverage represents a status of each league and what is covered by RapidAPI APIFOOTBALL provider
+// LeagueCoverage represents a status of each league and what is covered by RAPIdAPI APIFOOTBALL provider
 type LeagueCoverage struct {
 	Stangings   bool                   `json:"standings"`
 	Fixtures    LeagueCoverageFixtures `json:"fixtures"`
@@ -45,7 +45,7 @@ type LeagueCoverageFixtures struct {
 
 // Teams represents teams in required league
 type Teams struct {
-	Api struct {
+	API struct {
 		Results int           `json:"results"`
 		Teams   []LeagueTeams `json:"teams"`
 	}
@@ -67,9 +67,9 @@ type LeagueTeams struct {
 	VenueCapacity int    `json:"venue_capacity"`
 }
 
-// TeamSquad represents a Api output for squad of the team
+// TeamSquad represents a API output for squad of the team
 type TeamSquad struct {
-	Api struct {
+	API struct {
 		Results int      `json:"results"`
 		Players []Player `json:"players"`
 	}
@@ -94,7 +94,7 @@ type Player struct {
 
 // Standings represents a league table
 type Standings struct {
-	Api struct {
+	API struct {
 		Results   int        `json:"results"`
 		Standings []Standing `json:"standings"`
 		cRPM      int
@@ -131,7 +131,7 @@ type FormeStruct struct {
 
 // LeagueFixtures represents all fixtures in required league
 type LeagueFixtures struct {
-	Api struct {
+	API struct {
 		Results  int        `json:"results"`
 		Fixtures []Fixtures `json:"fixtures"`
 		cRPM     int
@@ -163,12 +163,12 @@ type Fixtures struct {
 		TeamID   int    `json:"team_id"`
 		TeamName string `json:"team_name"`
 		Logo     string `json:"logo"`
-	} `json:"home_team"`
+	} `json:"homeTeam"`
 	AwayTeam struct {
 		TeamID   int    `json:"team_id"`
 		TeamName string `json:"team_name"`
 		Logo     string `json:"logo"`
-	} `json:"away_team"`
+	} `json:"awayTeam"`
 	GoalsHomeTeam int `json:"goalsHomeTeam"`
 	GoalsAwayTeam int `json:"goalsAwayTeam"`
 	Score         struct {
@@ -181,8 +181,34 @@ type Fixtures struct {
 
 // CurrentFixtureRound represents data about current round
 type CurrentFixtureRound struct {
-	Api struct {
+	API struct {
 		Results  int      `json:"results"`
 		Fixtures []string `json:"fixtures"`
-	} `json:"api"`
+	} `json:"API"`
+}
+
+// H2HFixturesStats represents info about head to head between two teams
+type H2HFixturesStats struct {
+	API struct {
+		Results int `json:"results"`
+		Teams   []struct {
+			TeamID     int    `json:"team_id"`
+			TeamName   string `json:"team_name"`
+			TeamLogo   string `json:"team_logo"`
+			Statistics []struct {
+				Played H2HTeamStats `json:"played"`
+				Wins   H2HTeamStats `json:"wins"`
+				Draws  H2HTeamStats `json:"draws"`
+				Loses  H2HTeamStats `json:"loses"`
+			} `json:"statistics"`
+		} `json:"Teams"`
+		Fixtures []Fixtures `json:"fixtures"`
+	}
+}
+
+// H2HTeamStats struct
+type H2HTeamStats struct {
+	Home  int `json:"home"`
+	Away  int `json:"away"`
+	Total int `json:"total"`
 }

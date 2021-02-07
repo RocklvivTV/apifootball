@@ -24,7 +24,7 @@ func (c *APIClient) GetStandings(leagueID int) (*Standings, error) {
 		return nil, err
 	}
 	crpd, crpm := c.GetRequestsLimit()
-	standings.Api.cRPD = crpd
-	standings.Api.cRPM = crpm
+	standings.API.cRPD = crpd
+	standings.API.cRPM = crpm
 	return &standings, nil
 }

@@ -12,7 +12,7 @@ func TestGetLeagueByID(t *testing.T) {
 		t.Error(err)
 	}
 
-	leagues := res.Api.Leagues
+	leagues := res.API.Leagues
 	for i := range leagues {
 		if leagues[i].LeagueID != 2790 {
 			t.Error()

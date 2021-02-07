@@ -9,6 +9,7 @@ var (
 	fixturesLeaguePrefix      = "fixtures/league"
 	timezone                  = "Europe/London"
 	currentFixtureRoundPrefix = "fixtures/rounds"
+	h2hFixturesPrefix         = "fixtures/h2h"
 )
 
 // GetFixturesByLeagueID returns fixtures in required league by ID
@@ -46,4 +47,23 @@ func (c *APIClient) GetCurrentFixtureRound(leagueID int) (*CurrentFixtureRound, 
 	}
 
 	return &currentFixtureRound, nil
+}
+
+// GetH2HByTeamsID returns head to head stats
+func (c *APIClient) GetH2HByTeamsID(team1, team2 int) (*H2HFixturesStats, error) {
+	var h2hFixtures H2HFixturesStats
+
+	res, err := c.DoRequests("GET", fmt.Sprintf("%s/%d/%d", h2hFixturesPrefix, team1, team2), nil)
+	if err != nil {
+		log.Println(err.Error())
+		return nil, err
+	}
+
+	err = res.Decode(&h2hFixtures)
+	if err != nil {
+		log.Println(err.Error())
+		return nil, err
+	}
+
+	return &h2hFixtures, nil
 }

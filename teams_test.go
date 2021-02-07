@@ -17,7 +17,7 @@ func TestTeamsByLeague(t *testing.T) {
 		t.Error()
 	}
 
-	if res.Api.Results != expectedNumOfteams {
+	if res.API.Results != expectedNumOfteams {
 		t.Error()
 	}
 }

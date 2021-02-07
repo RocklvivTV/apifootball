@@ -17,7 +17,7 @@ func TestGetSquadByTeam(t *testing.T) {
 	if err != nil {
 		t.Error()
 	}
-	if res.Api.Results < 1 {
+	if res.API.Results < 1 {
 		t.Error()
 	}
 }

@@ -63,8 +63,8 @@ func TestRequest(t *testing.T) {
 	}
 	res.Decode(&v)
 
-	for k := range v.Api.Leagues {
-		if v.Api.Leagues[k].LeagueID != 2790 {
+	for k := range v.API.Leagues {
+		if v.API.Leagues[k].LeagueID != 2790 {
 			t.Error()
 		}
 	}
