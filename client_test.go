@@ -11,6 +11,7 @@ var (
 	leagueID = 2790
 )
 
+// TestNewClient
 func TestNewClient(t *testing.T) {
 	setup()
 	client := NewAPIClient(apikey)
